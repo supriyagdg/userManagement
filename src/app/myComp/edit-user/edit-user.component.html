@@ -1,0 +1,39 @@
+<br><br>
+
+<form #frm="ngForm" (ngSubmit)="frm.form.valid && onSubmit(frm)" class="container form-control">
+
+    <input type="hidden" name="id" #id="ngModel" ngModel [(ngModel)]="idd3">
+
+    <label for="name"><b>Name</b></label>
+    <input type="text" class="form-control" name="name" #name="ngModel" ngModel [(ngModel)]="name3"
+    required [ngClass]="{'is-invalid':frm.submitted && name.invalid}"> 
+    <div *ngIf="frm.submitted && name.invalid" class="invalid-feedback">
+      name is required
+    </div>
+    <br>
+    
+    <label for="email"><b>Email</b></label>
+    <input type="email" class="form-control" name="email" #email="ngModel" ngModel [(ngModel)]="email3"
+    required [ngClass]="{'is-invalid':frm.submitted && email.invalid}" minlength="4">
+    <div *ngIf="frm.submitted && email.invalid" class="invalid-feedback">
+        email is required
+        <div *ngIf="email.errors?.['minlength']">
+            Name must be at least 4 characters long.
+        </div>
+    </div>
+     <br>
+    
+    <label for="role"><b>Roles</b></label>&nbsp;&nbsp;
+    <input type="text" class="form-control" name="role" #role="ngModel" ngModel [(ngModel)]="role3"
+    required [ngClass]="{'is-invalid':frm.submitted && role.invalid}">
+    <div *ngIf="frm.submitted && role.invalid" class="invalid-feedback">
+        role is required
+    </div>
+     <br>
+    
+    <button pButton pRipple label="Submit" class="p-button-success"></button> &nbsp;&nbsp;
+    <button pButton pRipple label="Update" class="p-button-warning" (click)="onMainUpdate(frm)"></button> &nbsp;&nbsp;
+    <p-button label="Clear" styleClass="p-button-secondary" type="reset"></p-button>
+
+    </form>
+

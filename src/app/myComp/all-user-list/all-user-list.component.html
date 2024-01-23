@@ -1,0 +1,54 @@
+<!-- <p>all-user-list works!</p>
+<table class="table">
+
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Roles</th>
+      </tr>
+
+      <tr *ngFor="let dt of allData">
+      <td>{{dt.firstname}}</td>
+      <td>{{dt.email}}</td>
+      <td>{{dt.company.name}}</td>
+      </tr>
+ </table>
+
+ 
+<p-button label="Submit"></p-button>
+<p-button icon="pi pi-check"></p-button>
+<p-button label="Submit" icon="pi pi-check"></p-button>
+<p-button label="Submit" icon="pi pi-check" iconPos="right"></p-button> -->
+
+
+<br>
+<h5 style="text-align: center;">User List</h5> <br>
+<div>
+    <p-table [value]="allData" [tableStyle]="{ 'min-width': '50rem'}">
+
+        <ng-template  pTemplate="caption">
+           <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success" routerLink="/form"></button>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+         
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                  </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-ts>
+            <tr *ngFor="let dt of allData">
+                <td>{{dt.firstname}}</td>
+                <td>{{dt.email}}</td>
+                <td>{{dt.company.name}}</td>
+            
+                <td><p-button styleClass="p-button-rounded p-button-warning" icon="pi pi-pencil" (onClick)="onUpd(dt)" routerLink="/form"></p-button></td>
+                <td><p-button styleClass="p-button-rounded p-button-danger" icon="pi pi-trash" (onClick)="onDel(dt)"></p-button></td>
+               </tr>
+        </ng-template>
+        <!-- <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="30" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator> -->
+    </p-table>
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="rows" [totalRecords]="30" [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+</div>
